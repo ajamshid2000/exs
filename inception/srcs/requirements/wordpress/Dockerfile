@@ -1,14 +1,7 @@
 FROM debian:bullseye
 
 # Install PHP-FPM and extensions
-RUN apt-get update && apt-get install -y \
-    php-fpm \
-    php-mysql \
-    php-zip \
-    php-redis \
-    curl \
-    vim \
-    sendmail && \
+RUN apt-get update && apt-get install -y php-fpm php-mysql php-zip curl vim && \
     rm -rf /var/lib/apt/lists/*
 
 # Configure PHP-FPM to listen on port 9000 instead of unix socket
@@ -25,6 +18,7 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 WORKDIR /var/www/html
 RUN wp core download --allow-root && \
     chown -R www-data:www-data /var/www/html
-
+COPY ./tools/script.sh /wp/
+RUN sh /wp/script.sh
 # Run php-fpm in foreground
 CMD ["php-fpm7.4", "-F"]

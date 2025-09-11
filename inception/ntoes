@@ -1,5 +1,12 @@
 docker run -d -p 8080:80 test
 docker build -t test ./ || .
+docker exec -it mariadb bash
+mysql -h 127.0.0.1 -P 3306 -u root -p
+mysql -u root NULL / -p
+SELECT User, Host FROM mysql.user;
+
+
+
 
 docker compose up -d
 docker compose down
