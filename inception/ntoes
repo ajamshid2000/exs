@@ -17,6 +17,9 @@ docker compose down && up -d --build
 docker compose logs nginx
 
 
+docker system prune --all --force  //force delete everything
+
+
 defualt.conf
 # user  www-data;
 # worker_processes  auto;
