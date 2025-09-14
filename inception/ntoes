@@ -4,7 +4,8 @@ docker exec -it mariadb bash
 mysql -h 127.0.0.1 -P 3306 -u root -p
 mysql -u root NULL / -p
 SELECT User, Host FROM mysql.user;
-
+USE database
+SHOW TABLES
 
 
 
@@ -20,7 +21,10 @@ docker compose logs nginx
 docker system prune --all --force  //force delete everything
 
 
+docker network inspect
+
 defualt.conf
+
 # user  www-data;
 # worker_processes  auto;
 

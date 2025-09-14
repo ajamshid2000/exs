@@ -19,6 +19,7 @@ WORKDIR /var/www/html
 RUN wp core download --allow-root && \
     chown -R www-data:www-data /var/www/html
 COPY ./tools/script.sh /wp/
-RUN sh /wp/script.sh
+
+ENTRYPOINT ["sh", "/wp/script.sh"]
 # Run php-fpm in foreground
 CMD ["php-fpm7.4", "-F"]

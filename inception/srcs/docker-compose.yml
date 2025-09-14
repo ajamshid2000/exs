@@ -2,6 +2,8 @@ services:
   wordpress:
     build: ./requirements/wordpress
     container_name: wordpress
+    env_file:
+      .env
     networks:
       - i_network
     depends_on:
@@ -25,13 +27,13 @@ services:
     build: ./requirements/mariadb
     container_name: mariadb
     env_file:
-      ./.env
+      .env
     ports:
-      - 3306:3306
+      - "3306"
     networks:
       - i_network
     volumes:
-      - mariadb_volume:/var/lib/mysqlll
+      - mariadb_volume:/var/lib/mysql
 
 networks:
   i_network:
