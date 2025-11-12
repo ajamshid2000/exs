@@ -10,18 +10,20 @@ services:
       - mariadb
     volumes:
       - wordpress_data:/var/www/html
+    restart:  always
 
   nginx:
     build: ./requirements/nginx
     container_name: nginx
     ports:
-      - "8080:80"
+      - "443:443"
     networks:
       - i_network
     depends_on:
       - wordpress
     volumes:
       - wordpress_data:/var/www/html
+    restart:  always
     
   mariadb:
     build: ./requirements/mariadb
@@ -34,6 +36,7 @@ services:
       - i_network
     volumes:
       - mariadb_volume:/var/lib/mysql
+    restart:  always
 
 networks:
   i_network:
@@ -41,4 +44,14 @@ networks:
 
 volumes:
   wordpress_data:
+    driver: local
+    driver_opts:
+      type: 'none'
+      device: /home/ajamshid/data/wordpress
+      o: bind
   mariadb_volume:
+    driver: local
+    driver_opts:
+      type: 'none'
+      device: /home/ajamshid/data/mariadb
+      o: bind

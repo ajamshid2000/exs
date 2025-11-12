@@ -14,5 +14,5 @@ RUN chmod +x /docker-entrypoint-initdb.d/script.sh
 
 # EXPOSE 3306
 # RUN sh /docker-entrypoint-initdb.d/script.sh
-ENTRYPOINT ["bash", "/docker-entrypoint-initdb.d/script.sh"]
+ENTRYPOINT ["sh", "/docker-entrypoint-initdb.d/script.sh"]
 CMD ["mysqld"]
